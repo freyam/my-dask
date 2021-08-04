@@ -1,0 +1,53 @@
+digraph G {
+    graph[rankdir=BT]
+    node[shape=box fontname="helvetica"]
+
+    // Array Blockwise
+    BlockwiseLayer1 [fillcolor="#DDFFCC" style=filled]
+    BlockwiseLayer2 [fillcolor="#DDFFCC" style=filled]
+    BlockwiseCreateArray1 [fillcolor="#DDFFCC" style=filled]
+
+    Random0 -> Random1 -> {Random2; Random3} -> BlockwiseCreateArray1 -> Random4 -> BlockwiseLayer1
+    BlockwiseCreateArray1 -> BlockwiseLayer2
+
+    // DataFrame Shuffle
+    SimpleShuffleLayer1 [shape=note fillcolor="#D9F2FF" style=filled]
+    SimpleShuffleLayer2 [shape=note fillcolor="#D9F2FF" style=filled]
+
+    ShuffleLayer1 [shape=note fillcolor="#D9F2FF" style=filled]
+
+    Random10 -> Random11 -> {Random12; Random13} -> ShuffleLayer1 -> Random14 -> SimpleShuffleLayer1
+    ShuffleLayer1 -> SimpleShuffleLayer2
+
+    // DataFrame IO
+    DataFrameIOLayer1 [shape=note fillcolor="#D6D6FF" style=filled]
+    DataFrameIOLayer2 [shape=note fillcolor="#D6D6FF" style=filled]
+
+    Random20 -> Random21 -> {Random22; Random23} -> DataFrameIOLayer1 -> Random24 -> DataFrameIOLayer2 -> Random25
+
+    // Materialized
+    MaterializedLayer1 [fillcolor="#DBDEE5" style=filled]
+    MaterializedLayer2 [fillcolor="#DBDEE5" style=filled]
+
+    Random30 -> MaterializedLayer1 -> Random34 -> MaterializedLayer2 -> Random35
+
+    Legend [margin=0, label=<
+        <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="10">
+        <TR>
+        <TD><B>Legend</B></TD>
+        </TR>
+        <TR>
+        <TD BGCOLOR="#DDFFCC">Blockwise</TD>
+        </TR>
+        <TR>
+        <TD BGCOLOR="#D9F2FF">Shuffle</TD>
+        </TR>
+        <TR>
+        <TD BGCOLOR="#D6D6FF">DataFrameIO</TD>
+        </TR>
+        <TR>
+        <TD BGCOLOR="#DBDEE5">Materialized</TD>
+        </TR>
+        </TABLE>
+    >];
+}
