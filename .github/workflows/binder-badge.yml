@@ -1,11 +1,11 @@
 name: binder-badge
 on:
-  pull_request_target:
+    pull_request_target:
 
 jobs:
-  badge:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: manics/action-binderbadge@main
-        with:
-          githubToken: ${{ secrets.GITHUB_TOKEN }}
+    badge:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: manics/action-binderbadge@main
+              with:
+                  githubToken: ${{ secrets.GITHUB_TOKEN }}
